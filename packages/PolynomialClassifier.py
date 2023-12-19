@@ -7,13 +7,6 @@ def model_tuning_polynomial(modelName, X_train, Y_train):
                 'penalty':[None, 'l1', 'l2','elasticnet'],
             }
         },
-        'KNN': {
-            'model': KNeighborsClassifier,
-            'params': {
-                'n_neighbors': list(range(2, 8)),
-                'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']
-            }
-        },
         'SVC': {
             'model': SVC,
             'params': {
@@ -28,9 +21,7 @@ def model_tuning_polynomial(modelName, X_train, Y_train):
     Model = modelMap[modelName]['model']
     rand_param = modelMap[modelName]['params']
 
-    if modelName == 'KNN':
-        model = Model()
-    elif modelName == 'SVC':
+    if modelName == 'SVC':
         model = SVC(random_state=random_state, kernel='rbf')
     else:
         model = Model(random_state=random_state)
@@ -44,9 +35,7 @@ def model_tuning_polynomial(modelName, X_train, Y_train):
 
     best_param = report(search.cv_results_)
 
-    if modelName == 'KNN':
-        best_model = Model(**best_param)
-    elif modelName == 'SVC':
+    if modelName == 'SVC':
         best_model = SVC(random_state=random_state, kernel='rbf',**best_param)
     else:
         best_model = Model(random_state=random_state, **best_param)
@@ -66,10 +55,9 @@ def polynomial_ensemble_model(x_train, y_train, x_test):
     k_folds = 3
 
     classifiers = {
-        'name': ['LogReg', 'KNN', 'SVC'],
+        'name': ['LogReg', 'SVC'],
         'models': [
             LogisticRegression(random_state=random_state),
-            KNeighborsClassifier(),
             SVC(random_state=random_state)
         ],
         'scores': [],
