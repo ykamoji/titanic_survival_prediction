@@ -29,17 +29,17 @@ if __name__ == '__main__':
     test = load_data('test.csv')
     x_train, y_train, x_test = preprocess_dataset(train, test)
 
-    # print("\n\n------Tree based approach modeling------\n\n")
-    # tree_model = tree_ensemble_model(x_train.copy(), y_train.copy(), x_test.copy())
+    print("\n\n------Tree based approach modeling------\n\n")
+    tree_model = tree_ensemble_model(x_train.copy(), y_train.copy(), x_test.copy())
 
     print("\n\n------Polynomial based modeling------\n\n")
     poly_model = polynomial_ensemble_model(x_train.copy(), y_train.copy(), x_test.copy())
-    #
-    # print("\n\n------Nural Network based modeling------\n\n")
-    # model_tuning_NN(x_train.copy(),y_train.copy(), x_test.copy())
-    #
-    # print("\n\n------MLP based modeling------\n\n")
-    # nn_model = model_tuning_mlp(x_train.copy(), y_train.copy(), x_test.copy())
+
+    print("\n\n------Nural Network based modeling------\n\n")
+    model_tuning_NN(x_train.copy(),y_train.copy(), x_test.copy())
+
+    print("\n\n------MLP based modeling------\n\n")
+    nn_model = model_tuning_mlp(x_train.copy(), y_train.copy(), x_test.copy())
 
     if show_plots:
         fig, ax = plt.subplots(figsize=(6, 6))
