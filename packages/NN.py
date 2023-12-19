@@ -234,6 +234,15 @@ def model_tuning_NN(x_train, y_train, x_test):
 
     prediction = torch.sigmoid(best_model(X_test_t)).data.round_().numpy().flatten()
 
+    # submission = x_test.copy()
+    # submission = pd.DataFrame(submission)
+    # submission['Survived'] = prediction
+    # drop_columns = list(submission.columns)
+    # drop_columns.remove('Survived')
+    # submission.drop(drop_columns, axis=1, inplace=True)
+    # submission.to_csv(
+    #     path_or_buf='/Users/ykamoji/Documents/Semester1/COMPSCI_589/titanic_survival_prediction/titanic/' + "NN" + '_submission.csv')
+
 def model_tuning_mlp(x_train, y_train, x_test):
 
     x_train, y_train, x_test = formatter(x_train, y_train, x_test)
@@ -280,6 +289,16 @@ def model_tuning_mlp(x_train, y_train, x_test):
 
     best_model = MLPClassifier(random_state=random_state, max_iter=1000, **best_param)
     best_model.fit(x_train, y_train)
+
+    # submission = x_test.copy()
+    # submission = pd.DataFrame(submission)
+    # submission['Survived'] = best_model.predict(submission)
+    # drop_columns = list(submission.columns)
+    # drop_columns.remove('Survived')
+    # submission.drop(drop_columns, axis=1, inplace=True)
+    # submission.to_csv(
+    #     path_or_buf='/Users/ykamoji/Documents/Semester1/COMPSCI_589/titanic_survival_prediction/titanic/' + str(
+    #         type(best_model).__name__) + '_submission.csv')
 
     return best_model
 

@@ -141,6 +141,16 @@ def tree_ensemble_model(x_train, y_train, x_test):
 
 
     for model in classifiers['name']:
-        model_tuning_trees(model, x_train, y_train)
+         model_tuning_trees(model, x_train, y_train)
+
+    # submission = x_test.copy()
+    # submission = pd.DataFrame(submission)
+    # submission['Survived'] = best_model.predict(submission)
+    # drop_columns = list(submission.columns)
+    # drop_columns.remove('Survived')
+    # submission.drop(drop_columns, axis=1, inplace=True)
+    # submission.to_csv(
+    #     path_or_buf='/Users/ykamoji/Documents/Semester1/COMPSCI_589/titanic_survival_prediction/titanic/' + str(
+    #         type(best_model).__name__) + '_submission.csv')
 
     return best_model
