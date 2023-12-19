@@ -109,14 +109,9 @@ def polynomial_ensemble_model(x_train, y_train, x_test):
         # plt.savefig(f'{best_model}_learning_curve.png')
         plt.show()
 
-    ###
-    kaggle_accuracies = {}
-    for model in classifiers['name']:
-        best_model = model_tuning_polynomial(model, x_train, y_train)
-        kaggle_accuracies[model] = check_accuracy(best_model.predict(x_test))
 
-    for k, v in kaggle_accuracies.items():
-        print(f"{k} Kaggle score = {v:.3f}\n")
+    for model in classifiers['name']:
+        model_tuning_polynomial(model, x_train, y_train)
 
     best_model.fit(x_train, y_train)
     return best_model

@@ -234,8 +234,6 @@ def model_tuning_NN(x_train, y_train, x_test):
 
     prediction = torch.sigmoid(best_model(X_test_t)).data.round_().numpy().flatten()
 
-    print(f"\n\nNeural Network Kaggle score = {check_accuracy(prediction):.3f}\n")
-
 def model_tuning_mlp(x_train, y_train, x_test):
 
     x_train, y_train, x_test = formatter(x_train, y_train, x_test)
@@ -282,8 +280,6 @@ def model_tuning_mlp(x_train, y_train, x_test):
 
     best_model = MLPClassifier(random_state=random_state, max_iter=1000, **best_param)
     best_model.fit(x_train, y_train)
-
-    print(f"\n\nMLP Network Kaggle score = {check_accuracy(best_model.predict(x_test)):.3f}\n")
 
     return best_model
 

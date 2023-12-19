@@ -140,13 +140,7 @@ def tree_ensemble_model(x_train, y_train, x_test):
         plt.show()
 
 
-    ###
-    kaggle_accuracies = {}
     for model in classifiers['name']:
-        best_model = model_tuning_trees(model, x_train, y_train)
-        kaggle_accuracies[model] = check_accuracy(best_model.predict(x_test))
-
-    for k,v in kaggle_accuracies.items():
-        print(f"{k} Kaggle score = {v:.3f}\n")
+        model_tuning_trees(model, x_train, y_train)
 
     return best_model

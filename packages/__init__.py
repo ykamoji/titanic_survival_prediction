@@ -69,11 +69,6 @@ def feature_importance_graph(data, model):
     # plt.savefig('age_predict_relative_importance')
     plt.show()
 
-#Ground truth comparision
-def check_accuracy(prediction):
-    survived = pd.read_csv("/Users/ykamoji/Documents/Semester1/COMPSCI_589/titanic_survival_prediction/titanic/" + 'test_v2.csv')[['PassengerId', 'Survived']]
-    return (prediction == survived['Survived']).sum()/len(survived)
-
 from packages.data_preprocessing import preprocess_dataset
 from packages.TreeClassifer import  tree_ensemble_model
 from packages.PolynomialClassifier import polynomial_ensemble_model
