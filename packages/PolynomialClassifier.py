@@ -36,7 +36,7 @@ def model_tuning_polynomial(modelName, X_train, Y_train):
     best_param = report(search.cv_results_)
 
     if modelName == 'SVC':
-        best_model = SVC(random_state=random_state, kernel='rbf',**best_param)
+        best_model = SVC(random_state=random_state, kernel='rbf',C=0.1,**best_param)
     else:
         best_model = Model(random_state=random_state, **best_param)
 
